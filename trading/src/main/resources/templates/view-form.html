@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1 th:text="${message}"></h1>
+<form >
+    <label for="firstName">First Name: </label>
+    <input id="firstName" th:field="${finalDetails.firstName}" readonly>   <br><br>
+
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" th:field="${finalDetails.lastName}" readonly>     <br><br>
+
+    <label for="email">Email: </label>
+    <input id="email" th:field="${finalDetails.email}" readonly>     <br><br>
+
+<!--    <label for="password">Password: </label>-->
+<!--    <input id="password" th:text="${finalDetails.password}" >-->
+</form>
+</body>
+</html>
