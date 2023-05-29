@@ -43,12 +43,12 @@
 
 		<!--	MYSQL JAVA dependency	-->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<!--		<dependency>-->
-<!--			<groupId>mysql</groupId>-->
-<!--			<artifactId>mysql-connector-java</artifactId>-->
-<!--			<version>8.0.17</version>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.17</version>
+			<scope>runtime</scope>
+		</dependency>
 
 
         <!-- Core hibernate dependency		-->
