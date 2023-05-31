@@ -13,7 +13,7 @@
 	<artifactId>trading</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Trading Application New</name>
-	<description>Mkpits new Trading Application</description>
+	<description>Mkpits Trading Application</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

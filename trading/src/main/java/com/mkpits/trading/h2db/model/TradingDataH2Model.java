@@ -1,4 +1,5 @@
-package com.mkpits.trading.model;
+package com.mkpits.trading.h2db.model;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,23 +10,22 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "TradingData")
-public class TradingDataModel {
-
+@Table(name = "trading_data")
+public class TradingDataH2Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ScripeId")
+    @Column(name = "scripe_id")
     private long id;
 
-    @Column(name ="FiftyWeeksHigh")
+    @Column(name ="fifty_weeks_high")
     private double fiftyWeeksHigh;
 
-    @Column(name ="FiftyWeeksLow")
+    @Column(name ="fifty_weeks_low")
     private double fiftyWeeksLow;
 
-    @Column(name ="ScripeName")
+    @Column(name ="scripe_name")
     private String scripeName;
 
-    @Column(name ="CurrentPrice")
+    @Column(name ="current_price")
     private double currentPrice;
 }
