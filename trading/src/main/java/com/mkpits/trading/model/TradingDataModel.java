@@ -9,22 +9,23 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "trading_details")
+@Table(name = "TradingData")
 public class TradingDataModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ScripeId")
     private long id;
 
-    @Column(name ="fifty_weeks_high")
+    @Column(name ="FiftyWeeksHigh")
     private double fiftyWeeksHigh;
 
-    @Column(name ="fifty_weeks_low")
+    @Column(name ="FiftyWeeksLow")
     private double fiftyWeeksLow;
 
-    @Column(name ="scripe_name")
+    @Column(name ="ScripeName")
     private String scripeName;
 
-    @Column(name ="current_price")
+    @Column(name ="CurrentPrice")
     private double currentPrice;
 }
