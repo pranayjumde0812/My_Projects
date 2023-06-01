@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "trading_data")
 public class TradingDataH2Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "scripe_id")
     private long id;
 

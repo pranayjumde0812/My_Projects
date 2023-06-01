@@ -43,7 +43,7 @@ public class H2dbConfig {
 
 
     // Create DataSource
-    @Primary
+//    @Primary
     @Bean(name = "h2DataSource")
     @ConfigurationProperties(prefix = "spring.h2db.datasource")
     public DataSource dataSource(){
@@ -56,13 +56,15 @@ public class H2dbConfig {
     }
 
     // DataSource Injected to EntityManagerFactory
-    @Primary
+//    @Primary
     @Bean(name = "h2EntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean h2EntityManagerFactory(EntityManagerFactoryBuilder builder,
                                                                        @Qualifier("h2DataSource") DataSource dataSource){
 
         HashMap<String,Object> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto","update");
+        properties.put("hibernate.hbm2ddl.auto","create");
+        properties.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
+
 
         return builder.dataSource(dataSource)
                 .properties(properties)
@@ -72,7 +74,7 @@ public class H2dbConfig {
     }
 
     // EntityManagerFactory Injected to TransactionManager
-    @Primary
+//    @Primary
     @Bean(name = "h2TransactionManager")
     public PlatformTransactionManager transactionManager (@Qualifier("h2EntityManagerFactory")
                                                           EntityManagerFactory entityManagerFactory){
@@ -80,3 +82,7 @@ public class H2dbConfig {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }
+
+
+//// We are commenting @Primary here and give it to the MySQLConfig , We have to
+//// provide @Primary to any one of them

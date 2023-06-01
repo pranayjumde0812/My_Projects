@@ -7,6 +7,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -40,6 +41,7 @@ public class MySQLdbConfig {
     private String driverClassName;
 
     // Create DataSource
+    @Primary
     @Bean (name = "mySqlDataSource")
     @ConfigurationProperties(prefix = "spring.mysql.datasource")
     public DataSource dataSource (){
@@ -53,6 +55,7 @@ public class MySQLdbConfig {
     }
 
     // DataSource Injected to EntityManagerFactory
+    @Primary
     @Bean(name = "mySqlEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean mySqlEntityManagerFactory (EntityManagerFactoryBuilder builder,
                                                                              @Qualifier("mySqlDataSource") DataSource dataSource){
@@ -65,6 +68,7 @@ public class MySQLdbConfig {
     }
 
     // EntityManagerFactory Injected to TransactionManager
+    @Primary
     @Bean(name = "mySqlTransactionManager")
     public PlatformTransactionManager mySqlTransactionManager(@Qualifier("mySqlEntityManagerFactory")
                                                               EntityManagerFactory entityManagerFactory){

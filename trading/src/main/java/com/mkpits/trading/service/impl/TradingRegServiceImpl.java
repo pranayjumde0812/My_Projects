@@ -32,7 +32,7 @@ public class TradingRegServiceImpl implements TradingRegService {
 
         List<TradingDataMySqlModel> tradingDataMySqlModelList =tradingDataMySqlRepo.findAll();
 
-        tradingDataMySqlModelList.stream().forEach(tradingDataModel -> {
+        tradingDataMySqlModelList.forEach(tradingDataModel -> {
             TradingDataDto tradingDataDtoMysql =TradingDataDto.builder()
                     .scripeName(tradingDataModel.getScripeName())
                     .fiftyWeeksHigh(tradingDataModel.getFiftyWeeksHigh())
@@ -44,18 +44,18 @@ public class TradingRegServiceImpl implements TradingRegService {
         });
 
         ////// For H2 database
-        List<TradingDataH2Model> tradingDataH2ModelList =tradingDataH2Repo.findAll();
-
-        tradingDataH2ModelList.stream().forEach(tradingDataModel -> {
-            TradingDataDto tradingDataDtoH2 =TradingDataDto.builder()
-                    .scripeName(tradingDataModel.getScripeName())
-                    .fiftyWeeksHigh(tradingDataModel.getFiftyWeeksHigh())
-                    .fiftyWeeksLow(tradingDataModel.getFiftyWeeksLow())
-                    .currentPrice(tradingDataModel.getCurrentPrice())
-                    .build();
-
-            tradingDtoList.add(tradingDataDtoH2);
-        });
+//        List<TradingDataH2Model> tradingDataH2ModelList =tradingDataH2Repo.findAll();
+//
+//        tradingDataH2ModelList.forEach(tradingDataModel -> {
+//            TradingDataDto tradingDataDtoH2 =TradingDataDto.builder()
+//                    .scripeName(tradingDataModel.getScripeName())
+//                    .fiftyWeeksHigh(tradingDataModel.getFiftyWeeksHigh())
+//                    .fiftyWeeksLow(tradingDataModel.getFiftyWeeksLow())
+//                    .currentPrice(tradingDataModel.getCurrentPrice())
+//                    .build();
+//
+//            tradingDtoList.add(tradingDataDtoH2);
+//        });
 
         return tradingDtoList;
     }
