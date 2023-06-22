@@ -15,9 +15,9 @@
             <div class="col-md-6 offset-md-3">
 
                 <!-- Handling terms and conditions error // My Logic-->
-<!--                <div class="container">-->
-<!--                    <span th:text="${errorMsg}"></span>-->
-<!--                </div>-->
+                <!--                <div class="container">-->
+                <!--                    <span th:text="${errorMsg}"></span>-->
+                <!--                </div>-->
 
                 <!-- Start of Card -->
                 <div class="my-card mt-1">
@@ -33,19 +33,24 @@
 
                         <img th:src="@{/img/signup.png}" height="50px" width="50px"/>
 
-                        <h1>!! Register Here !!</h1>
+                        <h1> Register Here </h1>
 
                     </div>
 
                     <!-- Form Started -->
-                    <form method="post" th:action="@{/register}" th:object="${user}">
+                    <form novalidate method="post" th:action="@{/register}" th:object="${user}">
 
                         <!-- Name Field -->
                         <div class="form-group">
 
                             <label for="userName">Full Name</label>
-                            <input type="text" class="form-control" id="userName" name="name"
-                                   placeholder="Enter full name " th:value="${user.name}" required>
+                            <input type="text" th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
+                                   class="form-control" id="userName" name="name"
+                                   placeholder="Enter full name " th:value="${user.name}"
+                                   required>
+
+                            <!--     Validation message here  after class append    -->
+                            <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
 
                         </div>
 

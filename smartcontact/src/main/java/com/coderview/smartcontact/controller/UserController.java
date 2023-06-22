@@ -6,11 +6,13 @@ import com.coderview.smartcontact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -20,7 +22,8 @@ public class UserController {
 
     // Handler for register user
     @PostMapping("register")
-    public String registerNewUser(@ModelAttribute("user") User user,
+    public String registerNewUser(@Valid @ModelAttribute("user") User user,
+                                  BindingResult result,
                                   @RequestParam(value = "agreement",
                                           defaultValue = "false") boolean agreement,
                                   Model model,
@@ -35,17 +38,25 @@ public class UserController {
 //                return "signup";
             }
 
-             User saveUser = userService.registerUser(user);
+            //Check for Server side Validation
+            if (result.hasErrors()) {
+//                System.out.println("ERROR " + result.toString());
+                model.addAttribute("user", user);
+                return "signup";
+            }
+
+
+            User saveUser = userService.registerUser(user);
 
             model.addAttribute("user", new User());
-            session.setAttribute("message",new Message("Successfully Registered!!! ","alert-success"));
+            session.setAttribute("message", new Message("Successfully Registered!!! ", "alert-success"));
 
             return "login";
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("user", user);
-            session.setAttribute("message",new Message("Something went wrong!!! "+e.getMessage(),"alert-danger"));
+            session.setAttribute("message", new Message("Something went wrong!!! " + e.getMessage(), "alert-danger"));
 
             return "signup";
         }
