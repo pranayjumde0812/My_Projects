@@ -21,7 +21,7 @@ public class UserController {
     UserService userService;
 
     // Handler for register user
-    @PostMapping("register")
+    @PostMapping("/register")
     public String registerNewUser(@Valid @ModelAttribute("user") User user,
                                   BindingResult result,
                                   @RequestParam(value = "agreement",
@@ -51,7 +51,7 @@ public class UserController {
             model.addAttribute("user", new User());
             session.setAttribute("message", new Message("Successfully Registered!!! ", "alert-success"));
 
-            return "login";
+            return "signup";
 
         } catch (Exception e) {
             e.printStackTrace();
