@@ -5,5 +5,5 @@ import com.coderview.smartcontact.model.User;
 
 public interface UserService {
 
-    public User registerUser(User user);
+    User registerUser(User user);
 }

@@ -23,7 +23,7 @@ public class UserController {
     // Handler for register user
     @PostMapping("/register")
     public String registerNewUser(@Valid @ModelAttribute("user") User user,
-                                  BindingResult result,
+                                  BindingResult result1,
                                   @RequestParam(value = "agreement",
                                           defaultValue = "false") boolean agreement,
                                   Model model,
@@ -39,12 +39,11 @@ public class UserController {
             }
 
             //Check for Server side Validation
-            if (result.hasErrors()) {
-//                System.out.println("ERROR " + result.toString());
+            if (result1.hasErrors()) {
+                System.out.println("ERROR " + result1);
                 model.addAttribute("user", user);
                 return "signup";
             }
-
 
             User saveUser = userService.registerUser(user);
 
