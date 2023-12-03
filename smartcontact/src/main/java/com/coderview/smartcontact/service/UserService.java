@@ -6,4 +6,6 @@ import com.coderview.smartcontact.model.User;
 public interface UserService {
 
     User registerUser(User user);
+
+    User getUserByUsername(String email);
 }

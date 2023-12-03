@@ -29,4 +29,11 @@ public class UserServiceImpl implements UserService {
 
         return saveUser;
     }
+    @Override
+    public User getUserByUsername(String email) {
+
+        User user = userRepo.getUserByUserName(email);
+
+        return user;
+    }
 }
