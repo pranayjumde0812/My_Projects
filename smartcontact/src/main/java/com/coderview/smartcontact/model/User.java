@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+//@Data
 @Builder
 @Table(name = "Users")
 public class User {

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+//@Data
 @Builder
 @Table(name = "Contacts")
 public class Contact {

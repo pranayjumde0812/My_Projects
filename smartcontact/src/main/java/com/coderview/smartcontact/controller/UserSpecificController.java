@@ -32,7 +32,16 @@ public class UserSpecificController {
     }
 
     @RequestMapping("/admin/index")
-    public String adminDashboard(Model model) {
+    public String adminDashboard(Principal principal, Model model) {
+
+        String userName = principal.getName();
+        System.out.println(userName);
+
+        // fetch user by username
+        User user = userService.getUserByUsername(userName);
+        System.out.println(user);
+
+        model.addAttribute("user", user);
 
         model.addAttribute("title", "Admin - Dashboard");
 
