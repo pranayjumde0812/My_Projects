@@ -1,5 +1,6 @@
 package com.coderview.smartcontact.controller;
 
+import com.coderview.smartcontact.helper.Message;
 import com.coderview.smartcontact.model.Contact;
 import com.coderview.smartcontact.model.User;
 import com.coderview.smartcontact.repository.UserRepo;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +37,8 @@ public class PostSaveContact {
     public String saveContact(@ModelAttribute("contact") Contact contact,
                               @RequestParam("profileImage") MultipartFile file,
                               Principal principal,
-                              Model model) {
+                              Model model,
+                              HttpSession session) {
 
         try {
             String userName = principal.getName();
@@ -69,8 +72,15 @@ public class PostSaveContact {
 
             userRepo.save(user);
 
+            // print successfully contact added message
+            session.setAttribute("message", new Message("Contact added Successfully","alert-success"));
+
         } catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
+
+            // print message if contact not added successfully
+            session.setAttribute("message", new Message("Something went wrong! Please try again. ","alert-danger"));
+
         }
 
         return "normal/add-contacts";

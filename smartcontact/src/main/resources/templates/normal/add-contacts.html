@@ -10,7 +10,15 @@
 <body>
 <section>
     <div class="card mr-4">
+
         <div class="card-body">
+
+            <!-- alert message box -->
+            <div th:if="${session.message}" th:classappend="${session.message.type}"
+                 class="alert text-center" role="alert">
+                <p class="text-center" th:text="${session.message.content}"></p>
+                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+            </div>
             <h1 class="text-center">Add Contact</h1>
 
             <div class="container-fluid mt-1">
