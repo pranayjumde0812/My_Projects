@@ -9,7 +9,46 @@
 </head>
 <body>
 <section>
-    <h1>This is View contact page</h1>
+    <div class="card mr-4">
+        <div class="card-body">
+            <h1 class="text-center">Your Contacts</h1>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Sr.No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contact, status : ${contactList}">
+                    <th scope="row" th:text="${status.index + 1}"></th>
+                    <td th:text="${contact.name}"></td>
+                    <td th:text="${contact.phone}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination Part-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </section>
 </body>
 </html>
