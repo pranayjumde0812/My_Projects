@@ -4,6 +4,9 @@ import com.coderview.smartcontact.model.Contact;
 import com.coderview.smartcontact.repository.ContactRepo;
 import com.coderview.smartcontact.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +17,23 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepo contactRepo;
 
+    // Now Pagination work start
+    // per page contact sow = 5 [n]
+    // current page = 0 [page]
     @Override
-    public List<Contact> findContactByUser(long userId) {
+    public Page<Contact> findContactByUser(long userId, Integer page) {
 
-        List<Contact> contactListOfLoggedInUser = contactRepo.findContactsByUser(userId);
-        return contactListOfLoggedInUser;
+        Pageable pageable = PageRequest.of(page, 5);
+
+        Page<Contact> contactsByUser = contactRepo.findContactsByUser(userId, pageable);
+        return contactsByUser;
     }
+
+
+//    public List<Contact> findContactByUser(long userId) {
+//
+//        List<Contact> contactListOfLoggedInUser = contactRepo.findContactsByUser(userId);
+//        return contactListOfLoggedInUser;
+//    }
+
 }

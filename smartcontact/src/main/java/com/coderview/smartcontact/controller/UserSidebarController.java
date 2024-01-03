@@ -5,10 +5,12 @@ import com.coderview.smartcontact.model.User;
 import com.coderview.smartcontact.service.ContactService;
 import com.coderview.smartcontact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -56,17 +58,22 @@ public class UserSidebarController {
 
 
     // Handler for view total contacts of logged-in user
-    @GetMapping("/view-contact")
-    public String viewContact(Model model, Principal principal) {
+    // Now Pagination work start
+    // per page contact sow = 5 [n]
+    // current page = 0 [page]
+    @GetMapping("/view-contact/{page}")
+    public String viewContact(@PathVariable("page") Integer page, Model model, Principal principal) {
         model.addAttribute("title", "View Contact");
         // fetch contact list
         String userName = principal.getName();
         User user = userService.getUserByUsername(userName);
 //        List<Contact> userContacts = user.getContacts();
 
-        List<Contact> contactListOfLoggedInUser = contactService.findContactByUser(user.getUserId());
+        Page<Contact> contactListOfLoggedInUser = contactService.findContactByUser(user.getUserId(), page);
 
         model.addAttribute("contactList", contactListOfLoggedInUser);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", contactListOfLoggedInUser.getTotalPages());
 
         return "normal/view-contact";
     }
