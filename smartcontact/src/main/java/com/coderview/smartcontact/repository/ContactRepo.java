@@ -21,4 +21,6 @@ public interface ContactRepo extends JpaRepository<Contact, Long> {
     // contact per page = 5
     @Query("from Contact as c where c.user.userId = :userId")
     Page<Contact> findContactsByUser(@Param("userId") long userId, Pageable pageable);
+
+    Contact findContactByContactId(long contactId);
 }

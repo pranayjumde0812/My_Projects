@@ -29,6 +29,22 @@ public class ContactServiceImpl implements ContactService {
         return contactsByUser;
     }
 
+    @Override
+    public Contact findContactByContactId(long contactId) {
+
+        Contact contactByContactId = contactRepo.findContactByContactId(contactId);
+
+        return contactByContactId;
+    }
+
+    @Override
+    public String deleteContact(Contact contact) {
+
+        contactRepo.delete(contact);
+
+        return "Contact Deleted Successfully";
+    }
+
 
 //    public List<Contact> findContactByUser(long userId) {
 //

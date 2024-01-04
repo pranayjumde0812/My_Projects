@@ -1,5 +1,6 @@
 package com.coderview.smartcontact.repository;
 
+import com.coderview.smartcontact.model.Contact;
 import com.coderview.smartcontact.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

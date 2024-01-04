@@ -11,4 +11,8 @@ public interface ContactService {
     // per page contact sow = 5 [n]
     // current page = 0 [page]
     Page<Contact> findContactByUser(long userId, Integer page);
+
+    Contact findContactByContactId(long contactId);
+
+    String deleteContact(Contact contact);
 }

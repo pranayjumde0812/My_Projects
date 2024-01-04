@@ -25,7 +25,7 @@ import java.security.Principal;
 
 @Controller
 @RequestMapping("/user")
-public class PostSaveContact {
+public class PostSaveContactController {
 
     @Autowired
     private UserService userService;
@@ -51,6 +51,7 @@ public class PostSaveContact {
             // processing and uploading file
             if (file.isEmpty()) {
                 System.out.println("File is empty");
+                contact.setImageUrl("default.png");
             } else {
                 // upload the file to folder and update the name to contact
                 contact.setImageUrl(file.getOriginalFilename());
