@@ -22,19 +22,19 @@ public class GetContactDetailsController {
     @Autowired
     private UserService userService;
 
-    // method for adding common data (common logged-in user)
-    // after providing @ModelAttribute annotation it will pass common data to all the handler in class
-    @ModelAttribute
-    public void addLoggedInUser(Model model, Principal principal) {
-        String userName = principal.getName();
-        System.out.println(userName);
-
-        // fetch user by username
-        User user = userService.getUserByUsername(userName);
-        System.out.println(user);
-
-        model.addAttribute("user", user);
-    }
+//    // method for adding common data (common logged-in user)
+//    // after providing @ModelAttribute annotation it will pass common data to all the handler in class
+//    @ModelAttribute
+//    public void addLoggedInUser(Model model, Principal principal) {
+//        String userName = principal.getName();
+//        System.out.println(userName);
+//
+//        // fetch user by username
+//        User user = userService.getUserByUsername(userName);
+//        System.out.println(user);
+//
+//        model.addAttribute("user", user);
+//    }
 
     @GetMapping("/user/contact-details/{currentPage}/{contactId}")
     public String getContactDetails(@PathVariable("contactId") long contactId,
@@ -46,6 +46,8 @@ public class GetContactDetailsController {
 
         Contact contactByContactId = contactService.findContactByContactId(contactId);
         System.out.println(contactByContactId);
+
+        model.addAttribute("user", user);
 
         model.addAttribute("title", "Contact Details");
         model.addAttribute("currentPage", currentPage);

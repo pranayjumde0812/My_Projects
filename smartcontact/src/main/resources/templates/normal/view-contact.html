@@ -47,13 +47,18 @@
 
                     <td th:text="${contact.phone}"></td>
                     <td>
-<!--                        <a href="#" th:onclick="|deleteContact(${contact.contactId},${currentPage})|"-->
-<!--                           class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>-->
+
+                        <form th:action="@{'/user/contact/update-contact/'+${currentPage}+'/'+${contact.contactId}}" method="post">
+                            <button type="submit" class="btn btn-primary btn-sm" th:alt-title="Update">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </form>
 
                         <a href="#" th:onclick="|deleteContactWithSweetAlert2(${contact.contactId},${currentPage})|"
-                           class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                           class="btn btn-danger btn-sm mt-2" th:alt-title="Delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
 
-                        <a class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                     </td>
                 </tr>
                 </tbody>
