@@ -56,3 +56,17 @@ body {
 #user-logo {
     margin-right: 5px;
 }
+
+/* search bar css */
+.search-container {
+    position: relative;
+}
+
+.search-result {
+    position: absolute;
+    background: powderblue;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid burlywood;
+    display: none;
+}

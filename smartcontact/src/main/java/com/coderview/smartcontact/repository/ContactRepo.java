@@ -1,6 +1,7 @@
 package com.coderview.smartcontact.repository;
 
 import com.coderview.smartcontact.model.Contact;
+import com.coderview.smartcontact.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,6 @@ public interface ContactRepo extends JpaRepository<Contact, Long> {
     Page<Contact> findContactsByUser(@Param("userId") long userId, Pageable pageable);
 
     Contact findContactByContactId(long contactId);
+
+    List<Contact> findByNameContainingAndUser(String name, User user);
 }

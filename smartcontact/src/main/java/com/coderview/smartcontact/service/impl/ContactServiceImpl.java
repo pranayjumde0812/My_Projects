@@ -1,6 +1,7 @@
 package com.coderview.smartcontact.service.impl;
 
 import com.coderview.smartcontact.model.Contact;
+import com.coderview.smartcontact.model.User;
 import com.coderview.smartcontact.repository.ContactRepo;
 import com.coderview.smartcontact.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,14 @@ public class ContactServiceImpl implements ContactService {
         contactRepo.delete(contact);
 
         return "Contact Deleted Successfully";
+    }
+
+    @Override
+    public List<Contact> findContactByNameContainingKeywords(String name, User user) {
+
+        List<Contact> searchedContact = contactRepo.findByNameContainingAndUser(name, user);
+
+        return searchedContact;
     }
 
 

@@ -21,6 +21,15 @@
 
             <h1 class="text-center">Your Contacts</h1>
 
+            <!-- start search functionality -->
+            <div class="search-container my-4">
+                <input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your Contacts">
+
+                <div class="search-result">
+                    <!-- result goes here in this div-->
+                </div>
+            </div>
+            <!-- end of search functionality -->
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -48,7 +57,8 @@
                     <td th:text="${contact.phone}"></td>
                     <td>
 
-                        <form th:action="@{'/user/contact/update-contact/'+${currentPage}+'/'+${contact.contactId}}" method="post">
+                        <form th:action="@{'/user/contact/update-contact/'+${currentPage}+'/'+${contact.contactId}}"
+                              method="post">
                             <button type="submit" class="btn btn-primary btn-sm" th:alt-title="Update">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>

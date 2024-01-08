@@ -1,6 +1,7 @@
 package com.coderview.smartcontact.service;
 
 import com.coderview.smartcontact.model.Contact;
+import com.coderview.smartcontact.model.User;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ContactService {
     Contact findContactByContactId(long contactId);
 
     String deleteContact(Contact contact);
+
+    List<Contact> findContactByNameContainingKeywords(String name, User user);
 }
