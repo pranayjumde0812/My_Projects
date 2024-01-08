@@ -9,7 +9,25 @@
 </head>
 <body>
 <section>
-    <h1>This is User Dashboard</h1>
+    <div class="card mr-4">
+        <div class="card-body text-center mt-5">
+
+            <div class="container text-center">
+                <img class="contact-list-profile-pic" style="height: 200px; width: 200px" th:src="@{'/img/smc-user-dashboard.png'}">
+            </div>
+
+            <h1 class="text-center mt-3 font-italic font-color-black">
+                Start adding your contacts on cloud...
+            </h1>
+
+            <div class="text-right">
+                <a th:href="@{/user/add-contact}" class="btn btn-primary text-uppercase mt-4 mr-5">
+                    Add New Contact
+                </a>
+            </div>
+
+        </div>
+    </div>
 </section>
 </body>
 </html>

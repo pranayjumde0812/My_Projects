@@ -32,17 +32,17 @@
 
         <ul class="navbar-nav ml-auto text-uppercase">
 
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" th:href="@{/user/index}">Home<span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/user/index}">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/user/profile}"><i id="user-logo" class="fa-solid fa-user"></i><span th:text="${user.name}"></span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link"><span th:text="${user.name}"></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/logout}">Logout</a>-->
+<!--            </li>-->
 
         </ul>
 
@@ -58,7 +58,7 @@
 
     <div class="divider" id="one"></div>
     <a href="#" th:href="@{/user/index}" class="items"><i class="fa-solid fa-house"></i>Home</a>
-    <a href="#" th:href="@{/user/profile}" class="items"><i class="fa-solid fa-user"></i>Profile</a>
+    <a href="#" th:href="@{/user/profile}" class="items"><i class="fa-solid fa-user"></i>My Profile</a>
     <a href="#" th:href="@{/user/add-contact}" class="items"><i class="fa-solid fa-plus"></i>Add Contact</a>
     <a href="#" th:href="@{/user/view-contact/0}" class="items"><i class="fa-solid fa-address-book"></i>View Contact</a>
     <a href="#" th:href="@{/user/settings}" class="items"><i class="fa-solid fa-gear"></i>Settings</a>
