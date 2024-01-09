@@ -9,7 +9,47 @@
 </head>
 <body>
 <section>
-    <h1>This is Settings page</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- alert message box -->
+                        <div th:if="${session.info}" th:classappend="${session.info.type}"
+                             class="alert text-center" role="alert">
+                            <p class="text-center" th:text="${session.info.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('info')}"></th:block>
+                        </div>
+
+                        <h3 class="my-2">Change Password</h3>
+
+                        <form th:action="@{/user/settings/change-password}" method="post">
+                            <!--old password field-->
+
+                            <div class="form-group">
+                                <input name="oldPassword" type="text" class="form-control"
+                                       placeholder="Enter Old Password" required>
+                            </div>
+
+                            <!--new password field-->
+
+                            <div class="form-group">
+                                <input name="newPassword" type="text" class="form-control"
+                                       placeholder="Enter New Password" required>
+                            </div>
+
+                            <div class="container text-center">
+                                <button class="btn btn-success" type="submit">Change</button>
+                                <button class="btn btn-warning" type="reset">Reset</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>

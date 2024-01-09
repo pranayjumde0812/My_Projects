@@ -29,6 +29,7 @@ const search = () => {
 
                 text += `</div>`;
 
+                // JQuery
                 $(".search-result").html(text);
                 $(".search-result").show();
             })

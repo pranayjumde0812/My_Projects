@@ -29,11 +29,30 @@ public class UserServiceImpl implements UserService {
 
         return saveUser;
     }
+
     @Override
     public User getUserByUsername(String email) {
 
         User user = userRepo.getUserByUserName(email);
 
         return user;
+    }
+
+    @Override
+    public String changePassword(String oldRawPassword, String newRawPassword, User currentUser) {
+
+        String status = "fail";
+        boolean matches = passwordEncoder.matches(oldRawPassword, currentUser.getPassword());
+
+        if (matches) {
+
+            currentUser.setPassword(passwordEncoder.encode(newRawPassword));
+
+            User save = userRepo.save(currentUser);
+
+            status = "success";
+        }
+
+        return status;
     }
 }

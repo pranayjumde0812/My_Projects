@@ -24,35 +24,38 @@
 
             </div>
             <div class="container text-center">
-                <img style="height: 150px; width: 150px" class="contact-list-profile-pic" th:src="@{'/img/'+${user.imageUrl}}">
+                <img style="height: 150px; width: 150px" class="contact-list-profile-pic"
+                     th:src="@{'/img/'+${user.imageUrl}}">
 
                 <h3 class="mt-2"><span th:text="${user.name}"></span></h3>
 
-                <table class="table table-hover">
-                    <tbody>
-                    <tr>
-                        <th scope="col">#USER ID</th>
-                        <th scope="col">USER-SCM-<span th:text="${user.userId}"></span></th>
-                    </tr>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th scope="col">#USER ID</th>
+                            <th scope="col">USER-SCM-<span th:text="${user.userId}"></span></th>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">Email</th>
-                        <th scope="col"><span th:text="${user.email}"></span></th>
-                    </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <th scope="col"><span th:text="${user.email}"></span></th>
+                        </tr>
 
-                    <tr>
-                        <th scope="col">Role</th>
-                        <th scope="col"><span th:text="${user.role}"></span></th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Role</th>
+                            <th scope="col"><span th:text="${user.role}"></span></th>
+                        </tr>
 
-                    <tr>
-                        <th scope="col">About</th>
-                        <th scope="col"><span th:text="${user.about}"></span></th>
-                    </tr>
+                        <tr>
+                            <th scope="col">About</th>
+                            <th scope="col"><span th:text="${user.about}"></span></th>
+                        </tr>
 
-                    </tbody>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
