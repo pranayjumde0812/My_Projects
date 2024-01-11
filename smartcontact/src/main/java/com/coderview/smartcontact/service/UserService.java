@@ -10,4 +10,6 @@ public interface UserService {
     User getUserByUsername(String email);
 
     String changePassword(String oldRawPassword, String newRawPassword, User currentUser);
+
+    int generateSixDigitOTP();
 }

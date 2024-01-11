@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -55,4 +57,15 @@ public class UserServiceImpl implements UserService {
 
         return status;
     }
+
+
+    Random random = new Random();
+    @Override
+    public int generateSixDigitOTP() {
+
+        int otp = 100000 + random.nextInt(900000);
+
+        return otp;
+    }
+
 }

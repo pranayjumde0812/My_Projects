@@ -40,9 +40,12 @@ body {
 }
 
 #login .container #login-row #login-column #login-box #login-form #register-link {
-    margin-top: -85px;
+    margin-top: -50px;
 }
 
+#login .container #login-row #login-column #login-box #login-form #forgot-password-link {
+    margin-top: 15px;
+}
 
 /*this is for contact list profile photos css*/
 .contact-list-profile-pic {
@@ -69,4 +72,14 @@ body {
     padding: 10px;
     border: 1px solid burlywood;
     display: none;
+}
+
+
+/* Forgot pass */
+#forgot-pass .container #forgot-row #forgot-column #forgot-box {
+    margin-top: 120px;
+    max-width: 800px;
+    height: 260px;
+    border: 1px solid #9C9C9C;
+    background-color: white;
 }
