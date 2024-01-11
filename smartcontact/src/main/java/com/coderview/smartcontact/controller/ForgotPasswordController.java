@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,7 +42,7 @@ public class ForgotPasswordController {
 
         String purpose = "Smart Contact Manager (SCM) for password reset";
         String companyName = "CODERS VIEW";
-        String subject = "OTP for Smart Contact Manager password verification";
+        String subject = "OTP for Smart Contact Manager password reset";
 
         User user = userService.getUserByUsername(emailId);
         System.out.println(user);
@@ -61,7 +62,8 @@ public class ForgotPasswordController {
 
                 if (result) {
                     session.setAttribute("otpSend", new Message("OTP sent to your email...", "alert-success"));
-                    model.addAttribute("email", emailId);
+                    session.setAttribute("email", emailId);
+                    session.setAttribute("generatedOTP", otp);
                     returnValue = "verify-otp-form";
 
                 } else {
@@ -81,5 +83,50 @@ public class ForgotPasswordController {
         }
 
         return returnValue;
+    }
+
+
+    // verify otp handler
+    @PostMapping("/verify-otp")
+    public String verifyOTP(@RequestParam("otp") int enteredOTP,
+                            Model model, HttpSession session) {
+
+        String email = (String) session.getAttribute("email");
+        int originalGeneratedOTP = (int) session.getAttribute("generatedOTP");
+
+        if (originalGeneratedOTP == enteredOTP) {
+
+            model.addAttribute("email", email);
+            return "change-password";
+
+        } else {
+            session.setAttribute("wrongOTP", new Message("You Entered wrong OTP...", "alert-danger"));
+            return "verify-otp-form";
+        }
+    }
+
+    @PostMapping("/change-password")
+    public String resetPassword(@RequestParam("email") String email,
+                                @RequestParam("password") String newPassword,
+                                HttpSession session) {
+
+        System.out.println(email);
+        System.out.println(newPassword);
+
+        User userByUsername = userService.getUserByUsername(email);
+
+        boolean status = userService.changePassword(userByUsername, newPassword);
+
+        if (status) {
+
+            session.setAttribute("success", new Message("Password changes Successfully", "alert-success"));
+            return "redirect:/signin";
+
+        } else {
+
+            session.setAttribute("wrong", new Message("Something went wrong...", "alert-danger"));
+            return "change-password";
+        }
+
     }
 }

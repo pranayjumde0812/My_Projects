@@ -18,12 +18,17 @@
                             <h3 class="text-center text-info">Login</h3>
                             <!-- Alert Message -->
 
-                            <div th:if="${param.error}" class="alert alert-danger">
+                            <div th:if="${param.error}" class="alert alert-danger text-center">
                                 Invalid username or password
                             </div>
 
-                            <div th:if="${param.logout}" class="alert alert-danger">
+                            <div th:if="${param.logout}" class="alert alert-danger text-center">
                                 You have been logout
+                            </div>
+
+                            <div th:if="${session.success}" class="alert alert-success text-center">
+                                <span th:text="${session.success.content}"></span>
+                                <th:block th:text="${#session.removeAttribute('success')}"></th:block>
                             </div>
 
                             <!-- End alert Message -->

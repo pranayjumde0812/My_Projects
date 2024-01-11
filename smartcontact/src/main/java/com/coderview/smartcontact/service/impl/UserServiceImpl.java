@@ -60,12 +60,32 @@ public class UserServiceImpl implements UserService {
 
 
     Random random = new Random();
+
     @Override
     public int generateSixDigitOTP() {
 
         int otp = 100000 + random.nextInt(900000);
 
         return otp;
+    }
+
+    @Override
+    public boolean changePassword(User user, String newPassword) {
+
+        boolean status = false;
+
+        if (user != null) {
+
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            System.out.println(encodedPassword);
+            user.setPassword(encodedPassword);
+
+            userRepo.save(user);
+
+            status = true;
+        }
+
+        return status;
     }
 
 }

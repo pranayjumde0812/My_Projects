@@ -18,16 +18,14 @@
                         <h3 class="text-center m-3">Your Registered Email</h3>
 
                         <!-- alert message box -->
-                        <div th:if="${session.invalidUser}" th:classappend="${session.invalidUser.type}"
-                             class="alert text-center" role="alert">
-                            <p class="text-center" th:text="${session.invalidUser.content}"></p>
+                        <div th:if="${session.invalidUser}" class="alert alert-danger text-center">
+                            <span th:text="${session.invalidUser.content}"></span>
                             <th:block th:text="${#session.removeAttribute('invalidUser')}"></th:block>
                         </div>
 
                         <!-- alert message box \\ something went wrong email not send -->
-                        <div th:if="${session.emailNotSend}" th:classappend="${session.emailNotSend.type}"
-                             class="alert text-center" role="alert">
-                            <p class="text-center" th:text="${session.emailNotSend.content}"></p>
+                        <div th:if="${session.emailNotSend}" class="alert alert-danger text-center">
+                            <span th:text="${session.emailNotSend.content}"></span>
                             <th:block th:text="${#session.removeAttribute('emailNotSend')}"></th:block>
                         </div>
 

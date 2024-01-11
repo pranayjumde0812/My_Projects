@@ -58,7 +58,8 @@ public class EmailServiceImpl implements EmailService {
             mimeMessage.setSubject(subject);
 
             // adding text to message
-            mimeMessage.setText(message);
+//            mimeMessage.setText(message);
+            mimeMessage.setContent(message, "text/html");
 
             // send
             // Step 3 : send the message using Transport class
@@ -81,10 +82,13 @@ public class EmailServiceImpl implements EmailService {
 
         StringBuilder emailBuilder = new StringBuilder();
 
-        emailBuilder.append("Dear ").append(user.getName()).append(",\n\n");
-        emailBuilder.append("Your One-Time Password (OTP) of ").append(purpose).append(" is: ").append(generatedOTP).append(".\n\n");
-        emailBuilder.append("If you didn't request this OTP, please contact us.\n\n");
-        emailBuilder.append("Best regards,\n").append(companyName);
+        emailBuilder.append("<div style=\"font-family: Arial, sans-serif; border:1px solid #e2e2e2; padding:20px \">\n");
+        emailBuilder.append("\t<p>Dear ").append(user.getName()).append(",</p>\n\n");
+        emailBuilder.append("\t<p>Your One-Time Password (OTP) for ").append(purpose).append(" is: <strong>").append(generatedOTP).append("</strong>.</p>\n\n");
+        emailBuilder.append("\t<p>If you didn't request this OTP, please contact us immediately.</p>\n\n");
+        emailBuilder.append("\t<p>Best regards,<br>").append("\t\t").append(companyName).append("</p>\n");
+        emailBuilder.append("</div>");
+
 
         return emailBuilder.toString();
     }

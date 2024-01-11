@@ -12,4 +12,6 @@ public interface UserService {
     String changePassword(String oldRawPassword, String newRawPassword, User currentUser);
 
     int generateSixDigitOTP();
+
+    boolean changePassword(User user, String newPassword);
 }
